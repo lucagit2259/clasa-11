@@ -1,0 +1,65 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int suma(int n[5])
+{
+    int sum=0;
+    for (int i = 0; i < 5; i++)
+    {
+        sum=sum+n[i];
+    }
+    return sum;
+}
+int sum_pozitiv (int n[5])
+{
+    int sum=0;
+    for (int i = 0; i < 5; i++)
+    {
+        if (n[i]>0)
+        {
+         sum=sum+n[i];
+        }
+        else {i=i;}
+    }
+    return sum;
+}
+int media_aritmetica(int n[5])
+{
+    int ma=0;
+    for (int i = 0; i < 5; i++)
+    {
+        ma=ma+n[i];
+    }
+    ma=ma/4;
+    return ma;
+}
+
+int media_aritmetica_pozitiv(int n[5])
+{
+    int ma=0;
+    for (int i = 0; i < 5; i++)
+    {
+        if (n[i]>0)
+        {
+            ma=ma+n[i];
+        }
+        else {i=i;}
+    }
+    ma=ma/4;
+    return ma;
+}
+int main()
+{
+    int v[5];
+    cout<<"introduceti elementele in vector: ";
+    for (int i = 0; i < 5; i++)
+    {
+        cin>>v[i];
+    }
+    cout<<"suma elementelor vectorului: "<<suma(v)<<"\n";
+    cout<<"suma elementelor pozitive ale vectorului: "<<sum_pozitiv(v)<<"\n";
+    cout<<"media aritmetica a vectorului este: "<<media_aritmetica(v)<<"\n"; 
+    cout<<"media aritmetica ale elementelor pozitive ale vectorului este: "<<media_aritmetica_pozitiv(v)<<"\n"; 
+    return 0;
+}
