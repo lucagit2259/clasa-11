@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void medie(int a, int b, float &ma, float &mg)
+{
+    float medie;
+    medie=(a+b+ma+mg)/4;
+    cout<<medie;
+}
+int main()
+{
+    int a,b;
+    cout<<"introduceti cele 2 numere intregi: ";
+    cin>>a>>b;
+    float ma= (a+b)/2.0;
+    float mg= sqrt(a*b);
+    cout<<"media aritmetica si geometrica ale celoe 2 numere este: ";
+    cout<<ma<<" si "<<mg;
+    cout<<"\nmedia dintre a, b, media aritmetica si geometrica ale celor 2 numere este: ";
+    medie(a, b, ma, mg);
+    return 0;
+}
