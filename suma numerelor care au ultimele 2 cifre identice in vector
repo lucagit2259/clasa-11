@@ -1,0 +1,31 @@
+ #include <iostream>
+using namespace std;
+
+int suma(int v[100], int n)
+{
+    int s, a, b;
+    for (int i = 0; i <= n; i++)
+    {
+        a=v[i]%10;
+        b=v[i]/10%10;
+        if (a==b)
+        {
+            s+=v[i];
+        }
+    }
+    return s;
+}
+int main()
+{
+    int v[100];
+    int n;
+    cout<<"cate elemente ale vectorului introduceti?"<<endl;
+    cin>>n;
+    for(int i=0; i<n; i++)
+    {
+        cout<<"introduceti elementul "<<i+1<<": ";
+        cin>>v[i];
+    }
+    cout<<"suma elementelor care au ultimele 2 cifre identice este: "<<suma(v, n);
+    return 0;
+}
