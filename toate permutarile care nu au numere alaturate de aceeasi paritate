@@ -2,7 +2,7 @@
 
 using namespace std;
 int s[100];
-int n, as, ev, k;
+int n, as, ev, k, sol;
 void tipar()
 {
     for(int i=1; i<=n; i++)
@@ -43,8 +43,10 @@ int valid()
                 if(as)
                     ev=valid();}
                 if (as)
-                    if(solutie())
+                    if(solutie()){
+                    sol++;
                     tipar();
+                    }
                 else {k++;
                     s[k]=0;
                 }
@@ -54,5 +56,6 @@ int main()
     cout<<"valoare: ";
     cin>>n;
     bt();
+    cout<<sol<<" solutii";
     return 0;
 }
