@@ -70,3 +70,15 @@ int main()
     
     return 0;
 }
+/* fisier.txt:
+spania
+serbia
+luxemburg
+spania
+franta
+serbia
+estonia
+finlanda
+nigeria
+serbia
+*/
