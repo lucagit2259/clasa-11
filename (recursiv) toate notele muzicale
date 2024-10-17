@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int n, sol, st[100];
+char note [7] [10]={"do", "re", "mi", "fa", "sol","la" ,"si"};
+void afisare(int k) {
+    for(int i = 1; i <=k ; i++)
+        cout<<note[st[i]]<<",";
+    cout<<endl;
+}
+void bt(int k) {
+    for(int i=0; i<7; i++)
+    {
+        st[k]=i;
+        if(k==n)
+        {
+            afisare (k);
+            sol++;
+        }
+        else bt(k+1);
+    }
+}
+
+int main() {
+    int k=1;
+    cout << "valoarea lui n: ";
+    cin >> n;
+    bt(k);
+    cout<<endl<<"solutii: "<<sol;
+    return 0;
+}
