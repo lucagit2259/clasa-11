@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+int s[100];
+int n, as, ev;
+void tipar(int k)
+{
+    for(int i=1; i<=n; i++)
+        {
+            cout<<s[i]<<" ";
+        }
+        cout<<endl;
+}
+int valid(int k)
+{
+    for (int i=1; i<k; i++)
+    {
+        if(s[i]==s[k]) return 0;
+    }
+    return 1;
+}
+
+    void bt(int k)
+    {
+        if (k==n+1)
+        tipar(k);
+        else for (int i = 1; i <=n ; i++)
+        {
+            s[k]=i;
+            if (valid (k))
+                bt(k+1); 
+        }
+    }
+int main()
+{
+    int k=1;
+    cout<<"valoare: ";
+    cin>>n;
+    bt(k);
+    return 0;
+}
