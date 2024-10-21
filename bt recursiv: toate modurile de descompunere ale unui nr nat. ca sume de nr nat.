@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+int st[100];
+int n, s, x, z;
+void tipar(int k)
+{
+    for (int i = 1; i < k; i++)
+    {
+        cout<<st[i]<<" ";
+    }
+    cout<<"\n";
+    
+}
+    void bt(int k)
+    {
+        z++;
+        if (s==n){
+            x++;
+        tipar(k);
+        }
+        else
+        {
+            st[k]=0;
+            while (st[k]+ s<n)
+            {
+                st[k]++;
+                s=s +st[k];
+                bt(k+1);
+                s=s-st[k];
+            } 
+        }
+    }
+int main()
+{
+    int k=1;
+    cout<<"valoare: ";
+    cin>>n;
+    bt(k);
+    cout<<"\n"<<z<<" apelari si "<<x<<" solutii";
+    return 0;
+}
