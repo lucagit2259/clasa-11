@@ -1,0 +1,43 @@
+#include<iostream>
+
+using namespace std;
+int v[100] ,n;
+
+int dei(int stanga, int dreapta, int &solmax, int &solmin){
+    int mid, x1, x2;
+    if(stanga==dreapta)
+        {
+            solmax=v[stanga];
+            solmin=v[stanga];
+        }
+    else {
+         mid = (stanga+dreapta)/2;
+         dei(stanga, mid, x1, x2);
+         int stangamax=x1; int stangamin=x2;
+         dei(mid + 1, dreapta, x1, x2);
+         int dreaptamax=x1; int dreaptamin=x2;
+        if (stangamax > dreaptamax)
+                solmax=stangamax;
+        else
+                solmax=dreaptamax;
+        if (stangamin < dreaptamin)
+            solmin=stangamin;
+            else
+            solmin=dreaptamin;
+    }
+    return 0;
+}
+int main(){
+    int solmin=0;
+    int solmax=0;
+    cout<<"n = ";
+    cin>>n;
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<"el.poz. "<<i<<": ";
+        cin>>v[i];
+    }
+    dei(1, n, solmax, solmin);
+    cout<<"cel mai mic si cel mai mare numar din sir este: "<<solmin<<"  "<<solmax;
+    
+}
