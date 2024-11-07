@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+long long sol;
+void toh(int n, char a, char b, char c)
+{
+    sol=sol+1;
+    if (n==1)
+    cout<<a<<b<<endl;
+    else
+    { 
+        toh(n-1, a, c,b);
+        cout<<a<<b<<endl;
+        toh(n-1, c, b ,a);
+    }
+}
+int main(){
+    int n;
+    cout<<"cate discuri vrei sa ai pe tija?";
+    cin>>n;
+    toh(n, 'a', 'b', 'c');
+    cout<<endl<<sol<<"mutari";
+    return 0; 
+
+}
