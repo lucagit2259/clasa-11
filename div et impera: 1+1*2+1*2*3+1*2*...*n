@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+int factorial(int z)
+{
+    int inmultire=1;
+    for (int i = 1; i <= z; i++)
+    {
+        inmultire=inmultire*i;
+    }
+    return inmultire; 
+}
+void dei(int stanga, int dreapta, int &solutie)
+{
+    if (stanga==dreapta)
+    solutie= factorial (stanga);
+    else
+    {   int x1=0, x2=0;
+        int mid=(stanga+ dreapta)/2;
+        dei (stanga, mid, x1);
+        dei (mid+1,dreapta, x2);
+        solutie = x1+x2;
+    }
+}
+int main(){
+    int n;
+    int solutie=0;
+    cout<<"pana la cate elemente calculezi? ";
+    cin>>n;
+    dei(1, n, solutie);
+    cout<<"suma elementelor de la 1 la "<<n<<" este: "<<solutie;
+    return 0; 
+
+}
