@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+int x[100];
+void schimb(int &i, int &j)
+{
+    int aux=i;
+    i=j;
+    j=aux;
+
+}
+void poz(int stanga, int dreapta, int &k)
+{
+    int i=stanga;
+    int j=dreapta;
+    int ancora=x[stanga];
+    while(i<j){
+        while (i<=dreapta && x[i]<=ancora) i++;
+        while (x[j]>ancora) j--;
+        if (i<j)
+        {
+            schimb(x[i], x[j]);
+        }
+    }
+            schimb(x[stanga], x[j]);
+    k=j;
+}
+void sortare(int stanga, int dreapta)
+{
+    int k=0;
+    if (stanga< dreapta)
+    {
+        poz(stanga, dreapta, k);
+        sortare(stanga, k-1);
+        sortare (k+1, dreapta);
+    }
+}
+int main(){
+    int n;
+    cout<<"cate elemente vrei sa sortezi?\n";
+    cin>>n;
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<"introdu el poz "<<i<<": ";
+        cin>>x[i];
+    }
+    sortare(1, n);
+            cout<<"sirul sortat este: ";
+        for (int i = 1; i <= n; i++)
+        cout<<x[i]<<" ";
+    return 0; 
+
+}
