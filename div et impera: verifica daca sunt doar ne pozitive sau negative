@@ -1,0 +1,36 @@
+#include<iostream>
+
+using namespace std;
+int v[100] ,n;
+
+int dei(int stanga, int dreapta){
+    if (stanga==dreapta)
+    if (v[stanga]<0)
+    return -1;
+    else
+    return 1;
+    int mid = (stanga+dreapta)/2;
+    int semn_stanga=  dei(stanga, mid);
+    int semn_dreapta=  dei(mid + 1, dreapta);
+    if (semn_stanga != semn_dreapta)
+    return 0;
+    return semn_stanga;
+}
+int main(){
+    cout<<"n = ";
+    cin>>n;
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<"el.poz. "<<i<<": ";
+        cin>>v[i];
+    }
+    int rezultat=(dei(1, n));
+    cout<<"numerele din sir sunt ";
+    if (rezultat==-1)
+    cout<<"negative";
+    else if (rezultat==1)
+    cout<<"pozitive";
+    else
+    cout<<"si pozitive, dar si negative";
+    return 0;
+}
