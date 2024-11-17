@@ -1,0 +1,30 @@
+#include<iostream>
+
+using namespace std;
+int v[100] , x;
+
+int dei(int stanga, int dreapta){
+    if (stanga==dreapta)
+    if (v[stanga]==x)
+    return 1;
+    else return 0;
+    int mid = (stanga+dreapta)/2;
+    int aparitii_stanga=  dei(stanga, mid);
+    int aparitii_dreapta=  dei(mid + 1, dreapta);
+    return aparitii_stanga+ aparitii_dreapta;
+}
+int main(){
+    int n, p=0;
+    cout<<"introdu nr  care vrei sa i se afle aparitiile: ";
+    cin>>x;
+    cout<<"nr de elemente: ";
+    cin>>n;
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<"el.poz. "<<i<<": ";
+        cin>>v[i];
+    }
+    p=dei(1, n);
+    cout<<"numarul "<<x<<" apare de "<<p<<" ori";
+    return 0;
+}
