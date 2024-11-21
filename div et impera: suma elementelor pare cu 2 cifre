@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+int x[100];
+    int n;
+void citire (int stanga, int dreapta)
+{
+    int mijloc;
+    if(stanga==dreapta) {cout<<"\nElem de pe pozitia "<<stanga<<": ";
+                        cin>>x[stanga];
+                        }
+    else{
+   mijloc=(stanga+dreapta)/2;
+    citire(stanga,mijloc);
+    citire(mijloc+1,dreapta);
+    } 
+}
+void afisare (int stanga, int dreapta)
+{
+    int mijloc;
+    if(stanga==dreapta) cout<<x[stanga]<<" ";
+    else{
+   mijloc=(stanga+dreapta)/2;
+    afisare(stanga,mijloc);
+    afisare(mijloc+1,dreapta);
+    } 
+}
+
+void dei(int stanga, int dreapta, int &sum)
+{
+    int x1, x2;
+    int mijloc;
+    if (stanga==dreapta)
+    {
+        if (x[stanga]>9 && x[stanga]<100)
+        {
+            if(x[stanga]%2==0)
+            {
+            sum=x[stanga];
+            }
+        }
+    } 
+    else{
+        int mij=(stanga+dreapta)/2;
+        dei(stanga, mij, x1);
+        dei (mij+1, dreapta, x2);
+        sum=x1+x2;
+    }
+}
+int main(){
+    int sum=0;
+    cout<<"cate elemente sa aiba sirul?\n";
+    cin>>n;
+    citire (1, n);
+    afisare(1,n);
+    dei(1, n, sum);
+    cout<<"\n suma elementelor pare este: ";
+    cout<<sum;
+    return 0; 
+
+}
