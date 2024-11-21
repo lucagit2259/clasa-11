@@ -1,0 +1,37 @@
+#include<iostream>
+
+using namespace std;
+int v[100] ,n;
+
+int dei(int stanga, int dreapta, int &solmax){
+    int mid, x1;
+    if(stanga==dreapta)
+        {
+            solmax=v[stanga];
+        }
+    else {
+         mid = (stanga+dreapta)/2;
+         dei(stanga, mid, x1);
+         int stangamax=x1;
+         dei(mid + 1, dreapta, x1);
+         int dreaptamax=x1;
+        if (stangamax > dreaptamax)
+                solmax=stangamax;
+        else
+                solmax=dreaptamax;
+    }
+    return 0;
+}
+int main(){
+    int solmax=0;
+    cout<<"n = ";
+    cin>>n;
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<"el.poz. "<<i<<": ";
+        cin>>v[i];
+    }
+    dei(1, n, solmax);
+    cout<<"cel mai mare numar din sir este: "<<solmax;
+    
+}
