@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int x[10]={1, 2, 3 , 4 ,5 , 6, 7, 8, 9, 10};
+    int nr;
+int caut(int stanga, int dreapta)
+{
+    if(nr==x[(stanga+dreapta)/2])
+    return 1;
+    else if (stanga< dreapta)
+    if (nr<(stanga+dreapta)/2)
+    return caut (stanga, (stanga+ dreapta)/2-1);
+    else return caut ((stanga+dreapta)/2+1, dreapta);
+    else return 0;
+}
+
+int main(){
+    cout<<"ce element vrei sa gasesti?\n";
+    cin>>nr;
+    if (caut(0, 10))
+    cout<<"numarul "<<nr<<" exista in sir";
+    else cout<<"numarul "<<nr<<" nu exista in sir";
+    return 0; 
+}
