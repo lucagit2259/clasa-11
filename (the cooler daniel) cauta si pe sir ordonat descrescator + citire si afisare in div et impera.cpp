@@ -32,12 +32,12 @@ int caut(int stanga, int dreapta)
 {
     if(nr==x[(stanga+dreapta)/2])
     return 1;
-    else if (stanga < dreapta)
+    else if (x[stangax] < x[dreapta])
     if (nr<(x[stanga+dreapta)/2])
     return caut (stanga, (stanga+ dreapta)/2-1);
     else return caut ((stanga+dreapta)/2+1, dreapta);
     
-    else if (stanga >dreapta)
+    else if (x[stanga] >x[dreapta])
     if (nr>x[(stanga+dreapta)/2])
     return caut (stanga, (stanga+ dreapta)/2-1);
     else return caut ((stanga+dreapta)/2+1, dreapta);
