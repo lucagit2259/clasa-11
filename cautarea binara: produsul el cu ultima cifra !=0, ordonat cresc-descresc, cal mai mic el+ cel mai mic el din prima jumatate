@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+int x[100];
+int n;
+int cresc_descresc;
+void citire(int n)
+{
+    for (int i = 1; i <= n; i++)
+    {
+        cout<<"element de pe poz "<<i<<" :";
+        cin>>x[i];
+    }
+}
+int caut(int stanga, int dreapta, long long &produs)
+{
+    if(stanga==dreapta){
+    if (x[stanga]%10 != 0 && (x[stanga]>10 || x[stanga]< -10)) {
+            produs=produs* x[stanga];
+        }
+    return 1;}
+    else if (x[stanga] < x[dreapta]){
+        cresc_descresc=0;
+         int mijloc=(stanga+dreapta)/2;
+        caut (stanga, mijloc, produs);
+        caut (mijloc+1, dreapta, produs);
+    }
+
+    else if (x[stanga] >x[dreapta]){
+        cresc_descresc=1;
+        int mijloc=(stanga+dreapta)/2;
+        caut (stanga, (stanga+ dreapta)/2, produs);
+        caut ((stanga+dreapta)/2+1, dreapta, produs);
+    }
+    return 0;
+}
+
+void verific_mic(int stanga, int dreapta, int &cel_mai_mic, int &cel_mai_mic_la_jumatate) {
+    cel_mai_mic = INT_MAX;
+    cel_mai_mic_la_jumatate = INT_MAX;
+
+    for (int i = stanga; i <= dreapta; i++) {
+        if (x[i] < cel_mai_mic) {
+            cel_mai_mic = x[i];
+        }
+        if (i <= (stanga + dreapta) / 2 && x[i] < cel_mai_mic_la_jumatate) {
+            cel_mai_mic_la_jumatate = x[i];
+        }
+    }
+}
+int main(){
+    long long produs =1;
+    int cel_mai_mic;
+    int cel_mai_mic_la_jumatate;
+    cout<<"cate elemente sa contina sirul?\n";
+    cin>>n;
+    citire(n);
+    caut(1, n, produs);
+    if (produs== 1)
+    {
+        cout<<"nu exista elemente cu ultima cifra diferita de 0";
+    }
+    else
+    cout<<"produsul elementelor cu ultima cifra diferita de 0 este: "<<produs;
+    if (cresc_descresc==1)
+    {
+        cout<<"\nsirul este ordonat descrescator";
+    }
+    else cout<<"\nsirul este ordonat crescator";
+    verific_mic (1, n, cel_mai_mic, cel_mai_mic_la_jumatate);
+    cout<<"\ncel mai mic element este: "<< cel_mai_mic;
+    cout<<"\ncel mai mic element din prima jumatate este: "<<cel_mai_mic_la_jumatate;    
+    return 0; 
+}
