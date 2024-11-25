@@ -31,17 +31,17 @@ void afisare(int stanga, int dreapta)
 int caut(int stanga, int dreapta)
 {
     if(nr==x[(stanga+dreapta)/2])
-    return 1;
-    else if (x[stangax] < x[dreapta])
-    if (nr<(x[stanga+dreapta)/2])
-    return caut (stanga, (stanga+ dreapta)/2-1);
+    return 0;
+    else if (x[stanga] < x[dreapta])
+    if (nr<x[(stanga+dreapta)/2])
+    return caut (stanga, (stanga+ dreapta)/2);
     else return caut ((stanga+dreapta)/2+1, dreapta);
     
     else if (x[stanga] >x[dreapta])
     if (nr>x[(stanga+dreapta)/2])
-    return caut (stanga, (stanga+ dreapta)/2-1);
+    return caut (stanga, (stanga+ dreapta)/2);
     else return caut ((stanga+dreapta)/2+1, dreapta);
-    else return 0;
+    else return 1;
 }
 
 int main(){
@@ -51,7 +51,7 @@ int main(){
     afisare(1, n);
     cout<<"\nce element vrei sa gasesti?\n";
     cin>>nr;
-    if (caut(1, 10))
+    if (caut(1, 10)==0)
     cout<<"numarul "<<nr<<" exista in sir";
     else cout<<"numarul "<<nr<<" nu exista in sir";
     return 0; 
