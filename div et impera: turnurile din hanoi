@@ -5,7 +5,7 @@ void toh(int n, char a, char b, char c)
 {
     sol=sol+1;
     if (n==1)
-    cout<<a<<b<<endl;
+    cout<<a<<b<<" ";
     else
     { 
         toh(n-1, a, c,b);
