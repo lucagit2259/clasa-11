@@ -9,7 +9,7 @@ void toh(int n, char a, char b, char c)
     else
     { 
         toh(n-1, a, c,b);
-        cout<<a<<b<<endl;
+        cout<<a<<b<<" ";
         toh(n-1, c, b ,a);
     }
 }
