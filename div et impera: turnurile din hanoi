@@ -15,7 +15,7 @@ void toh(int n, char a, char b, char c)
 }
 int main(){
     int n;
-    cout<<"cate discuri vrei sa ai pe tija?";
+    cout<<"cate discuri vrei sa ai pe tija?"<<"\n";
     cin>>n;
     toh(n, 'a', 'b', 'c');
     cout<<endl<<sol<<"mutari";
