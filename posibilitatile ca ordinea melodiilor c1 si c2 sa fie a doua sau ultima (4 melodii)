@@ -62,6 +62,6 @@ int main()
     cout<<"cele 2 cantece: ";
     cin>>c1>>c2;
     bt();
-    cout<<endl<<o<<" de solutii";
+    cout<<endl<<o<<" solutii";
     return 0;
 }
