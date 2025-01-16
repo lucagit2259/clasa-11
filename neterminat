@@ -1,0 +1,62 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int a[10] [10], x[10], n, vf_vide;
+ifstream fin("fisier.txt");
+void citire()
+{   int i,j, x,y;
+        fin>>n;
+    for (i = 1; i <=n; i++)
+        for ( j = 1; j <= n; j++)
+            a[i][j]=0;
+    while (fin>>x>>y)
+    {
+        a[x][y]=1;
+        a[y][x]=1;
+    }   
+}
+void afisare()
+{ int i, j;
+    for ( i = 1; i <=n; i++)
+    {
+        for ( j = 1; j <=n; j++)
+        {
+            cout<<a[i][j]<<" ";
+        }
+        cout<<endl;
+    }   
+}
+void vector_grade()
+{
+  for(int i=1; i<n; i++)
+  {
+    for(int j=i+1; j<=n; j++)
+    {
+      if(a[i][j]==1)
+      x[i]++;
+    }
+  }
+}
+void vf_grad_minim()
+{
+  
+}
+void noduri_terminale()
+{
+  
+}
+void noduri_izolate()
+{
+  
+}
+int main()
+{
+   citire();
+  afisare();
+  vector_grade();
+  for(int i=1; i<=n; i++)
+  {
+    cout<<x[i]<<" ";
+  }
+   return 0;
+}
