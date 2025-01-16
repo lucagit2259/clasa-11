@@ -1,0 +1,111 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int a[10] [10], x[10], n, vf_vide;
+ifstream fin("fisier.txt");
+void citire()
+{
+    int i, j;
+    fin>>n;
+    for ( i = 1; i <=n; i++)
+    {
+        for ( j = 1; j <=n; j++)
+        {
+            fin>>a[i][j];
+        }   
+    }
+}
+void afisare()
+{
+    int i, j;
+    for ( i = 1; i < n; i++)
+    {
+        for ( j = i+1; j <= n; j++)
+        {
+            if (a[i][j]==1)
+            {
+                cout<<"["<<i<<"],["<<j<<"] ";
+            }
+        }
+    }
+}
+void vecinii_fiecarui_vf ()
+{
+  int i, j, ok;
+  for(i=1; i<= n; i++)
+  {
+    cout<<"\nvecin cu "<<i<<" sunt varfurile: ";
+    ok=0;
+    for(j=1; j<=n; j++)
+    {
+      if(a[i][j]==1)
+      {
+        cout<<j<<" ";
+        ok++;
+      }
+    }
+    if(ok==0){
+      vf_vide ++;
+      cout<<"nu are";
+    }
+  }
+}
+void muchii_necesare_pt_0_vf_vide()
+{
+  if(vf_vide==0)
+  cout<<"\nmatricea nu mai are nevoie de muchii pentru a avea toate vf nevide";
+  else {
+    cout<<"\nmatricea mai are nevoie de: ";
+    if(vf_vide==1)
+    cout<<"o muchie";
+    else cout<<vf_vide/2<<" muchii";
+  }
+}
+void vf_maxim()
+{
+  int i, j, y=0, vecin_max;
+ for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= n; j++)
+        {
+            if (a[i][j] == 1)
+            {
+                x[i]++;
+            }
+        }
+    }
+    for (i = 1; i <= n; i++)
+    {
+        if (x[i] > vecin_max)
+        {
+            vecin_max = x[i];
+        }
+    }
+  for(i=1; i<=n; i++)
+  {
+    if(x[i]==vecin_max)
+    cout<<"varful "<<i<<" are gradul maxim: "<<vecin_max<<"\n";
+  }
+}
+int main()
+{
+   citire();
+   afisare();
+   cout<<"\n";
+   vf_maxim();
+   vecinii_fiecarui_vf();
+   muchii_necesare_pt_0_vf_vide();
+   return 0;
+}
+    /*fisier.txt
+      9
+0 1 1 0 0 1 0 0 0
+1 0 0 1 1 0 0 0 0
+1 0 0 0 0 1 1 0 0
+0 1 0 0 0 0 0 0 1
+0 1 0 0 0 0 0 0 0
+1 0 1 0 0 0 0 0 0
+0 0 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0
+    */
