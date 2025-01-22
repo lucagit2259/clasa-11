@@ -1,0 +1,69 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("fisier.txt");
+int n, a[10][10], nr_muchii;
+struct vecini
+{
+    int inceput;
+    int sfarsit;
+};
+
+vecini t[100];
+void citeste()
+{
+    f>>n;
+    for (int i = 1; i <= n ; i++)
+    {
+        for (int j = 1; j <=n; j++)
+        {
+            f>>a[i][j];
+        }
+    }
+}
+
+void citeste_pt_lista()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = i+1; j <= n; j++)
+        {
+            if (a[i][j]==1)
+            {
+                t[nr_muchii].inceput=i;
+                t[nr_muchii].sfarsit=j;
+                nr_muchii++;
+            }
+            
+        }
+    }
+    
+}
+void afisare_pt_lista()
+{
+    for (int i = 0; i <nr_muchii; i++)
+    {
+        cout<<"["<<t[i].inceput<<"],["<<t[i].sfarsit<<"]\n";
+    }
+    
+}
+void cauta()
+{
+    int p;
+    cout<<"care nod doresti sa îi aflii vecinii? ";
+    cin>>p;
+    for (int i = 0; i < nr_muchii; i++)
+    {
+        if (t[i].inceput==p|| t[i].sfarsit==p)
+        cout<<t[i].inceput<<" "<<t[i].sfarsit<<";  ";
+        
+    }
+}
+int main()
+{
+    citeste();
+    citeste_pt_lista();
+    afisare_pt_lista();
+    cauta();
+    return 0;
+}
