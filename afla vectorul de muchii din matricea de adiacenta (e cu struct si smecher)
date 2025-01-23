@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-ifstream f("fisier.txt");
+ifstream f("graf.txt");
 int n, a[10][10], nr_muchii;
 struct vecini
 {
@@ -48,13 +48,15 @@ void afisare_pt_lista()
 void cauta()
 {
     int p;
-    cout<<"care nod doresti sa ii aflii vecinii? ";
+    cout<<"carui nod doresti sa ii aflii vecinii? ";
     cin>>p;
+    cout<<"vecinii lui "<<p<<" sunt:\n";
     for (int i = 0; i < nr_muchii; i++)
     {
         if (t[i].inceput==p|| t[i].sfarsit==p)
-        cout<<t[i].inceput<<","<<t[i].sfarsit<<"  ";
-        
+        if (t[i].inceput!=p )
+        cout<<t[i].inceput<<" ";
+        else cout<<t[i].sfarsit<<" ";   
     }
 }
 int main()
