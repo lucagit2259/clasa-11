@@ -33,11 +33,9 @@ void citeste_pt_lista()
                 t[nr_muchii].inceput=i;
                 t[nr_muchii].sfarsit=j;
                 nr_muchii++;
-            }
-            
+            }       
         }
     }
-    
 }
 void afisare_pt_lista()
 {
@@ -50,12 +48,12 @@ void afisare_pt_lista()
 void cauta()
 {
     int p;
-    cout<<"care nod doresti sa îi aflii vecinii? ";
+    cout<<"care nod doresti sa ii aflii vecinii? ";
     cin>>p;
     for (int i = 0; i < nr_muchii; i++)
     {
         if (t[i].inceput==p|| t[i].sfarsit==p)
-        cout<<t[i].inceput<<" "<<t[i].sfarsit<<";  ";
+        cout<<t[i].inceput<<","<<t[i].sfarsit<<"  ";
         
     }
 }
@@ -67,3 +65,14 @@ int main()
     cauta();
     return 0;
 }
+/*fisier.txt
+8
+0 1 1 1 0 0 0 0
+1 0 1 1 0 0 0 0
+1 1 0 1 1 0 0 0
+0 0 1 0 0 0 0 0
+0 0 1 0 0 0 0 0
+0 0 0 0 0 0 1 1
+0 0 0 0 0 1 0 0
+0 0 0 0 0 1 0 0
+*/
