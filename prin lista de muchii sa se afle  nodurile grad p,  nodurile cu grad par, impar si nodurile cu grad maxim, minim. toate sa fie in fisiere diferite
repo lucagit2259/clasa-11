@@ -1,0 +1,109 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream f("muchii.txt");
+ofstream afis_gradat ("gradat.txt");
+ofstream afis_parimpar ("parimpar.txt");
+ofstream afis_maxmin ("maxmin.txt");
+int n, nr_muchii, x[20];
+struct vecini
+{
+    int inceput;
+    int sfarsit;
+};
+vecini t[100];
+void citeste()
+{
+    f>>n;
+    while (f>>t[nr_muchii].inceput >> t[nr_muchii].sfarsit)
+    {
+        nr_muchii++;
+    }
+    f.close();
+}
+void vector_grade()
+{
+    for (int i = 0; i < nr_muchii; i++)
+    {
+        x[t[i].inceput]++;
+        x[t[i].sfarsit]++;
+    }
+}
+void noduri_grad_p ()
+{
+    int p, ok=0;
+    cout<<"care este gradul nodurilor/nodului pe care doriti sa-l cautati?\n";
+    cin>>p;
+    for (int i = 1; i <= n; i++)
+    {
+        if (x[i]==p)
+        {
+            ok++;
+            afis_gradat<<"nodul "<<i<<" are gradul "<<p<<"\n";
+        }
+    }
+    if (ok==0)
+    {
+        afis_gradat<<"nu sunt noduri cu grad "<<p;
+    }
+    afis_gradat.close();
+}
+void par_impar()
+{
+    for (int i = 1; i <=n; i++)
+    {
+        if (x[i]!=0)
+        {
+            if (x[i]%2==0)
+            {
+                afis_parimpar<<"nodul "<<i<<" are grad par\n";
+            }
+            else afis_parimpar<<"nodul "<<i<<" are grad impar\n";   
+        }
+    }
+    afis_parimpar.close();
+}
+void maxim_minim()
+{
+    int maxim=0, minim=999;
+    for (int i = 0; i < n; i++)
+    {
+        if (x[i]>maxim)
+        maxim=x[i];
+        if (x[i]<minim)
+        minim=x[i];
+    }
+    afis_maxmin<<" gradul maxim si minim din sirul de muchii sunt:\n"<<maxim<<" "<<minim<<"\n";
+    for (int i = 0; i < n; i++)
+    {
+        if (x[i]==maxim)
+        {
+            afis_maxmin<<"nodul "<<i<<" are gradul maxim\n";
+        }
+        if (x[i]==minim)
+        {
+            afis_maxmin<<"nodul "<<i<<" are gradul minim\n";
+        }
+    }
+    afis_maxmin.close();
+}
+int main()
+{
+    citeste();
+    vector_grade();
+    noduri_grad_p();
+    par_impar();
+    maxim_minim();
+    return 0;
+}
+/*muchii.txt:
+8
+1 2
+1 3
+1 4
+2 3
+2 4
+3 4
+3 5
+6 7
+*/
