@@ -5,7 +5,7 @@ using namespace std;
 typedef int stiva[100];
 int a[20][20],n,k,as,ev,x,y,este;
 stiva st;
-fstream f("graf.in");
+fstream f("graf.txt");
 void citeste()
 {
     f>>n;
