@@ -96,3 +96,14 @@ int main(){
      if(nr) cout << "Avem " << nr << " lanturi elementare!";
     else cout << "Nu avem lanturi elementare";
 }
+/*graf.txt
+8
+0 1 1 1 0 0 0 0
+1 0 0 0 1 0 0 0
+1 0 0 1 1 0 0 0
+1 0 1 0 0 0 0 0
+0 1 1 0 0 0 0 0
+0 0 0 0 0 0 1 1
+0 0 0 0 0 1 0 0
+0 0 0 0 0 1 0 0
+*/
