@@ -1,0 +1,89 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int a[10][10], t[10][10], n;
+ifstream f("date.txt");
+void citire()
+{
+    int x, y;
+    f >> n;
+    while (f >> x >> y)
+    {
+        a[x][y] = 1;
+        a[y][x] = 1;
+        t[x][y] = 1;
+        t[y][x] = 1;
+    }
+    f.close();
+}
+void afisare(int mat[10][10])
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            cout << mat[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+void roy()
+{
+    int i, j, k, nr = 0;
+    for (k = 1; k <= n; k++)
+    {
+        for (i = 1; i <= n; i++)
+        {
+            if (t[i][k])
+            {
+                for (j = 1; j <= n; j++)
+                {
+                    if (t[k][j])
+                    {
+                        nr++;
+                        t[i][j] = 1;
+                        cout << "modificarea nr " << nr << ":\n";
+                        afisare(a);
+                    }
+                }
+            }
+        }
+    }
+}
+int verificare()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            if (t[i][j]==0)
+                return 0;
+        }
+    }
+    return 1;
+}
+int main()
+{
+    citire();
+    cout << "matricea de adiacenta este: \n";
+    afisare(a);
+    roy();
+    cout << "\nmatricea de drumuri este: \n";
+    afisare(t);
+    if (verificare())
+        cout << "\ngraful este conex\n";
+    else
+        cout << "\ngraful nu este conex\n";
+}
+/*date.txt
+  7
+1 2
+1 6
+1 7
+2 6
+2 7
+3 4
+3 7
+4 5
+6 7
+*/
