@@ -1,0 +1,76 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int a[10][10],b[10][10], n, e_partial;
+ifstream f1("graf1.txt");
+ifstream f2("graf2.txt");
+void citire1()
+{
+    int x, y;
+    f1 >> n;
+    while (f1 >> x >> y)
+    {
+        a[x][y] = 1;
+        a[y][x] = 1;
+    }
+    f1.close();
+}
+void citire2()
+{
+    int x, y;
+    while (f2 >> x >> y)
+    {
+        b[x][y] = 1;
+        b[y][x] = 1;
+    }
+    f2.close();
+}
+void afisare1()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+void afisare2()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            cout << b[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+int verificare()
+{
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = i+1; j <=n; j++)
+        {
+            if (a[i][j]!=b[i][j])
+            {
+                e_partial=1;
+                cout<<"muchia "<<i<<" "<<j<<" a fos eliminata din graful 1 in graful 2\n";
+            }
+            
+        }
+        
+    }
+    
+}
+int main()
+{
+    citire1();
+    citire2();
+    cout << "prima matrice are matricea de adiacenta: \n";
+    afisare1();
+    cout << "\na doua matrice are matricea de adiacenta: \n";
+    afisare2();
+    verificare();
+}
