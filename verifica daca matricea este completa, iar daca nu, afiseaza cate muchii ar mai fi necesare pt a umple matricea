@@ -1,0 +1,70 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int a[10][10], t[10][10], n, contor;
+ifstream f("graf.txt");
+void citire()
+{
+    int x, y;
+    f >> n;
+    while (f >> x >> y)
+    {
+        a[x][y] = 1;
+        a[y][x] = 1;
+    }
+    f.close();
+}
+void afisare()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+int verificare()
+{
+    contor = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            if (a[i][j] == 1)
+            {
+                contor++;
+            }
+        }
+    }
+    if (contor == n * n - n)
+        return 1;
+    else if (contor == 0)
+    {
+        return 0;
+    }
+    return -1;
+}
+void nr_minim_muchii()
+{
+    int temp = n * (n - 1);
+    temp = (temp - contor) / 2;
+    cout << "\nmai sunt necesare " << temp << " muchii pentru a avea matricea completa";
+}
+int main()
+{
+    citire();
+    cout << "matricea de adiacenta este: \n";
+    afisare();
+    if (verificare() == 0)
+    {
+        cout << "matricea este nula";
+    }
+    else if (verificare() == 1)
+    {
+        cout << "matricea este completa";
+    }
+    else
+        nr_minim_muchii();
+}
