@@ -1,0 +1,76 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+int a[100][100], n, vizitat[20], c[20], prim, ultim, k ;
+ifstream f("graf.txt");
+void citire()
+{
+    int x, y;
+    f>> n;
+    while (f >> x >> y)
+    {
+        a[x][y] = 1;
+        a[y][x] = 1;
+    }
+    f.close();
+}
+void afisare()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+void init (int k)
+{
+    prim=ultim=1; c[ultim]=k; vizitat[k]=1;
+}
+int este_vida ()
+{
+    return ultim<prim;
+}
+void adauga(int i)
+{
+    ultim++, c[ultim]=i; vizitat[i]=1;
+}
+void elimina()
+{
+    prim++;
+}
+void parcurgere (int nod)
+{
+    int stanga, dreapta;
+    vizitat[nod]=1;
+    cout<<nod<<" ";
+    for (int i = 1; i <= n; i++)
+    {
+        if (a[nod] [i]==1 && vizitat[i]==0)
+        {
+            parcurgere(i);
+        }
+        else parcurgere(nod-1);
+    }
+
+}
+int main()
+{
+    int nod;
+    citire();
+    cout << "matricea de adiacenta este: \n";
+    afisare();
+    cout<<"nodul de start de unde se va parcurge matricea este:\n";
+    cin>>nod;
+    parcurgere (nod);
+    for (int i = 1; i <= n; i++)
+    {
+        if (vizitat[i]==1)
+        {
+            cout<<i<<" ";
+        } 
+    }
+    
+}
