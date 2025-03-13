@@ -1,0 +1,98 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int n, a[10][10], v[10];
+
+void verifica()
+{
+    int contor=0;
+    
+    for (int i = 1; i <=n ; i++)
+    {
+        if (v[i]==0)
+        {
+                contor=1;
+                break;
+        }
+    }
+    if (contor!=0)
+    {
+        cout<<"\ngraful nu este conex ";
+    }
+    else cout<<"\ngraful este conex ";
+    
+}
+void creare_matrice_adiacenta() 
+{   
+    fstream f("fisier.txt");
+    int i,x,y;
+    f>>n;
+    while(f >> x >> y) a[x][y] = a[y][x] = 1;
+    f.close();
+}
+void afisare_adiacenta()
+{
+    cout << "\nMatricea de adiacenta:\n";
+    for (int i = 1; i <= n; i++) 
+    {
+        for (int j = 1; j <= n; j++)
+            cout << a[i][j] << " ";
+        cout << endl;
+    }
+}
+
+void bfs(int start)
+{
+    int i, k, st, dr, x[10];
+    st = dr = 1;
+    x[1] = start;
+    v[start] = 1;
+
+    while(st<=dr) {
+        k = x[st];
+        for(int i = 1; i <= n; i++)
+        {
+            if(v[i] == 0 && a[k][i] == 1) {
+                v[i] = 1;
+                x[++dr] = i;
+            }
+        }
+        st++;
+    }
+}
+
+void dfs(int k)
+{
+    v[k] = 1;
+
+    for (int i = 1; i <= n; i++) {
+        if (a[k][i] && v[i] == 0) {
+            dfs(i);
+        }
+    }
+}
+
+
+int main()
+{
+    int nod;
+    string raspuns;
+    creare_matrice_adiacenta();
+    cout<<"din care nod se incepe parcurgerea?\n"<<"se alege dintre 1 si "<<n<<endl;
+    cin>>nod;
+    afisare_adiacenta();
+
+    cout<<"prin care metoda se va parcurge graful?\nprin latime sau adancime? (se alege BFS sau DFS)\n";
+    cin>>raspuns;
+    if (raspuns=="BFS" || raspuns=="bf" || raspuns=="bfs")
+        bfs(nod);
+
+    else if (raspuns=="DFS"|| raspuns=="df" || raspuns=="dfs")
+        dfs(nod);
+
+    else cout<<"\nnu sa ales parcurgerea dintre cele doua variante";
+    verifica();
+    return 0;
+}
