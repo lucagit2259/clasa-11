@@ -1,0 +1,65 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int n, a[10][10], v[10];
+
+void init_v()
+{
+    for (int i = 0; i < 10; i++) {
+        v[i] = 0;
+    }
+}
+
+void creare_matrice_adiacenta() 
+{   
+    fstream f("fisier.txt");
+    int i,x,y;
+    f>>n;
+    while(f >> x >> y) a[x][y] = a[y][x] = 1;
+    f.close();
+}
+void afisare_adiacenta()
+{
+    cout << "\nMatricea de adiacenta:\n";
+    for (int i = 1; i <= n; i++) 
+    {
+        for (int j = 1; j <= n; j++)
+            cout << a[i][j] << " ";
+        cout << endl;
+    }
+}
+void dfs(int k)
+{
+    v[k] = 1;
+    cout<<k<<" ";
+    for (int i = 1; i <= n; i++) {
+        if (a[k][i] && v[i] == 0)
+            dfs(i);
+    }
+}
+
+void verifica()
+{
+    init_v();
+    for (int i = 1; i <=n ; i++)
+    {
+        if (v[i]==0)
+        {
+            cout<<"o componenta conexa este: ";
+            dfs(i);  
+            cout << endl;
+        }
+    }
+    
+}
+int main()
+{
+    int nod;
+    creare_matrice_adiacenta();
+    afisare_adiacenta();
+    cout<<endl;
+    verifica();
+    return 0;
+}
