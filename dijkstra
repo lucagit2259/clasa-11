@@ -1,0 +1,103 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+const int inf = 100; // Valoare infinit
+int i, j, n;
+int s[10], t[10], x, d[10], a[10][10];
+
+void citire(const char fis[20], int a[][10], int &n) {
+    int k;
+    fstream f(fis);
+    if (!f.is_open()) {
+        cerr << "Eroare la deschiderea fișierului!\n";
+        return;
+    }
+    f >> n;
+    for (i = 1; i <= n; i++) // Inițializăm matricea
+        for (j = 1; j <= n; j++)
+            a[i][j] = (i == j) ? 0 : inf;
+
+    while (f >> i >> j >> k)
+        a[i][j] = k; // Fără a[j][i], deoarece este graf orientat
+    f.close();
+}
+
+void afisare(int a[10][10], int n) {
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++)
+            if (a[i][j] == inf)
+                cout << "inf  ";
+            else
+                cout << a[i][j] << "  ";
+        cout << endl;
+    }
+}
+
+void drum(int i) {
+    if (t[i] != 0)
+        drum(t[i]);
+    cout << i << "  ";
+}
+
+void afis_vect(int v[], int n) {
+    for (int i = 1; i <= n; i++)
+        cout << v[i] << "   ";
+    cout << endl;
+}
+
+void dij(int x) {
+    int min, y;
+    s[x] = 1;
+    for (i = 1; i <= n; i++) {
+        d[i] = a[x][i];
+        if (i != x && d[i] < inf)
+            t[i] = x;
+    }
+    afis_vect(d, n);
+    afis_vect(t, n);
+
+    for (i = 1; i <= n - 1; i++) {
+        for (j = 1, min = inf; j <= n; j++)
+            if (s[j] == 0 && d[j] < min) {
+                min = d[j];
+                y = j;
+            }
+        s[y] = 1;
+        cout << "\nNodul selectat " << y << endl;
+        for (j = 1; j <= n; j++)
+            if (s[j] == 0 && d[j] > d[y] + a[y][j]) {
+                d[j] = d[y] + a[y][j];
+                t[j] = y;
+            }
+
+        cout << "\n_______Forma vect ____________" << endl;
+        afis_vect(d, n);
+        afis_vect(t, n);
+    }
+}
+
+void afisare_drumuri(int x) {
+    cout << "\nDrumul de la " << x << " la:";
+    for (int i = 1; i <= n; i++)
+        if (i != x)
+            if (t[i] != 0) {
+                cout << "\nDrumul cu costul minim de la nodul " << x;
+                cout << " la nodul " << i << " are costul " << d[i] << endl;
+                cout << "\nSi trece prin: ";
+                drum(i);
+                cout << endl;
+            } else
+                cout << "\nNu exista drum de la " << x << " la " << i << endl;
+}
+
+int main() {
+    cout << "\nMatricea costurilor: " << endl;
+    citire("fisier.txt", a, n);
+    afisare(a, n);
+    cout << "\nDe unde pleci? ";
+    cin >> x;
+    dij(x);
+    afisare_drumuri(x);
+    return 0;
+}
