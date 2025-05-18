@@ -1,0 +1,67 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+struct Nod
+{
+    int info;
+    Nod *stanga, *dreapta;
+};
+
+void create(Nod *&radacina, ifstream &f)
+{
+    int value;
+    f >> value;
+
+    if (value == 0)
+        radacina = NULL;
+    else
+    {
+        radacina = new Nod;
+        radacina->info = value;
+        create(radacina->stanga, f); // stanga child
+        create(radacina->dreapta, f);
+    }
+}
+
+void RSD(Nod *radacina)
+{
+    if (radacina)
+    {
+        cout << radacina->info << " ";
+        RSD(radacina->stanga);
+        RSD(radacina->dreapta);
+    }
+}
+
+int este_la_fel(Nod *radacina1, Nod *radacina2)
+{
+    if (radacina1 == nullptr && radacina2 == nullptr)
+        return 1; 
+
+    if (radacina1 == nullptr || radacina2 == nullptr)
+        return 0;
+
+    if (radacina1->info != radacina2->info)
+        return 0; 
+
+    return este_la_fel(radacina1->stanga, radacina2->stanga) && este_la_fel(radacina1->dreapta, radacina2->dreapta);
+}
+
+
+int main()
+{
+    ifstream copac1("../text/bfs.txt");
+    ifstream copac2("../text/cost.txt");
+
+    Nod *radacina = nullptr;
+    Nod *radacina2 = nullptr;
+
+    create(radacina, copac1);
+    create(radacina2, copac2);
+
+    if(este_la_fel(radacina, radacina2)) cout<<"\nSunt la fel";
+    else cout<<"\nNu sunt la fel";
+
+    return 0;
+}
