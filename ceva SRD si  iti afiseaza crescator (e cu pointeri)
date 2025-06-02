@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream fin("date.txt");
+struct nod {
+    int nr;
+    nod *st, *dr;
+};
+void inserare(nod *& c, int k)
+{
+    if(c)
+    {
+        if (c->nr==k)
+            cout<<"Nod deja inserat"<<endl;
+            else if (c->nr<k)
+            inserare (c->dr, k);
+            else inserare (c->st, k);
+    }
+        else {
+            c=new nod;
+            c->nr=k;
+            c->dr= c->st=NULL;
+        }
+}
+void SRD(nod *radacina)
+{
+    if (radacina)
+    {
+        SRD(radacina->st);
+        cout << radacina->nr<< " ";
+        SRD(radacina->dr);
+    }
+}
+int main()
+{
+    int x;
+    nod *radacina=NULL;
+    while (fin>>x)
+    {
+        inserare(radacina, x);
+        
+    }
+    SRD (radacina);
+}
