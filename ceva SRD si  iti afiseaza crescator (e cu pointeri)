@@ -44,3 +44,4 @@ int main()
     }
     SRD (radacina);
 }
+/*4 5 4 1 10 -3 10 5 4 7*/
