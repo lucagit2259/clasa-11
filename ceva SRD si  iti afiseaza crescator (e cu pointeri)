@@ -3,7 +3,7 @@
 using namespace std;
 ifstream fin("date.txt");
 struct nod {
-    int nr, ap=1;
+    int nr, ap;
     nod *st, *dr;
 };
 void inserare(nod *& c, int k)
@@ -20,6 +20,7 @@ void inserare(nod *& c, int k)
         else {
             c=new nod;
             c->nr=k;
+            c->ap=1;
             c->dr= c->st=NULL;
         }
 }
@@ -28,7 +29,7 @@ void SRD(nod *radacina)
     if (radacina)
     {
         SRD(radacina->st);
-        cout << radacina->nr<< "afisate de  "<<radacina->ap<<" ori"<<endl;
+        cout << radacina->nr<< " afisate de  "<<radacina->ap<<" ori"<<endl;
         SRD(radacina->dr);
     }
 }
